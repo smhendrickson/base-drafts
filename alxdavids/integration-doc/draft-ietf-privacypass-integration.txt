@@ -5,10 +5,10 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                            Brave Software
 Intended status: Informational                                 S. Valdez
-Expires: 22 April 2022                                        Google LLC
+Expires: 12 June 2022                                         Google LLC
                                                                C.A. Wood
                                                               Cloudflare
-                                                         19 October 2021
+                                                         9 December 2021
 
 
                   Privacy Pass Protocol Specification
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 April 2022.
+   This Internet-Draft will expire on 12 June 2022.
 
 Copyright Notice
 
@@ -48,9 +48,9 @@ Copyright Notice
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.  Code Components
-   extracted from this document must include Simplified BSD License text
-   as described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Simplified BSD License.
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
 
 Table of Contents
 
@@ -63,6 +63,9 @@ Table of Contents
    4.  References
      4.1.  Normative References
      4.2.  Informative References
+   Appendix A.  Security considerations
+   Appendix B.  IANA considerations
+   Appendix C.  Acknowledgements
    Authors' Addresses
 
 1.  Introduction
@@ -226,29 +229,49 @@ Table of Contents
               Davidson, A., Faz-Hernandez, A., Sullivan, N., and C. A.
               Wood, "Oblivious Pseudorandom Functions (OPRFs) using
               Prime-Order Groups", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-voprf-07, 6 July 2021,
+              draft-irtf-cfrg-voprf-08, 25 October 2021,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              voprf-07>.
+              voprf-08>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://datatracker.ietf.org/doc/html/rfc2119>.
+              <https://www.rfc-editor.org/rfc/rfc2119>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8446>.
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
 4.2.  Informative References
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
-              October 2013,
-              <https://datatracker.ietf.org/doc/html/rfc7049>.
+              October 2013, <https://www.rfc-editor.org/rfc/rfc7049>.
 
    [RFC7159]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
               Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March
-              2014, <https://datatracker.ietf.org/doc/html/rfc7159>.
+              2014, <https://www.rfc-editor.org/rfc/rfc7159>.
+
+Appendix A.  Security considerations
+
+   This document outlines how to instantiate the Privacy Pass protocol
+   based on the verifiable oblivious pseudorandom function defined
+   [I-D.irtf-cfrg-voprf].  All security considerations described in that
+   document also apply in the Privacy Pass use-case.  Considerations
+   related to client-privacy in a multi-client, multi-server ecosystem
+   are deferred to the Architecture document
+   [I-D.ietf-privacypass-architecture].
+
+Appendix B.  IANA considerations
+
+   Currently there are no IANA considerations associated with this
+   document.
+
+Appendix C.  Acknowledgements
+
+   The authors of this document would like to acknowledge the helpful
+   feedback and discussions from Benjamin Schwartz, Joseph Salowey,
+   Sofia Celi, and Tara Whalen.
 
 Authors' Addresses
 
