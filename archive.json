@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-10-31T00:53:19.764167+00:00",
+  "timestamp": "2021-12-12T00:56:49.933914+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -4114,13 +4114,13 @@
       "labels": [],
       "body": "This is my first draft of an integration document for replacing the current protocol doc. I've tried to keep it as concise as possible. A few questions:\r\n\r\n- Would it be better to be more specific about how the POPRF algorithms are used? Or is this level of detail sufficient?\r\n- Can we leave considerations about how public keys are distributed and consumed to the HTTP API doc?\r\n- Is it reasonable to leave metadata-level considerations to the architecture doc.\r\n\r\nLet me know what you think so far, cc @chris-wood, @bemasc, @dvorak42, @jsalowey, @claucece, @armfazh ",
       "createdAt": "2021-09-29T13:00:43Z",
-      "updatedAt": "2021-10-29T17:10:12Z",
+      "updatedAt": "2021-12-09T13:34:54Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "alxdavids/integration-doc",
-      "headRefOid": "a30b4d75beafbb514e4ac5630fd992f7dc234f59",
+      "headRefOid": "eb5c07d7519af27d37b535a035a85f2dee1c0cb5",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4174,6 +4174,20 @@
           "body": "This is missing IANA (empty) and security (ideally non-empty) considerations, as well as acknowledgements (though that's not necessary). Can we add those?",
           "createdAt": "2021-10-29T17:10:00Z",
           "updatedAt": "2021-10-29T17:10:12Z"
+        },
+        {
+          "author": "alxdavids",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@chris-wood I added the missing sections, is there anything else that needs addressing?",
+          "createdAt": "2021-12-09T09:19:50Z",
+          "updatedAt": "2021-12-09T09:19:50Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @alxdavids. It's good for now. We may need to update the issuance and redemption details to use the new HTTP-based authentication challenge being worked on in parallel, but the core of the issuance flow will remain the same. ",
+          "createdAt": "2021-12-09T13:34:54Z",
+          "updatedAt": "2021-12-09T13:34:54Z"
         }
       ],
       "reviews": [
