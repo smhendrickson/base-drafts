@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-12-12T00:56:49.933914+00:00",
+  "timestamp": "2021-12-14T00:57:26.543764+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -4114,7 +4114,7 @@
       "labels": [],
       "body": "This is my first draft of an integration document for replacing the current protocol doc. I've tried to keep it as concise as possible. A few questions:\r\n\r\n- Would it be better to be more specific about how the POPRF algorithms are used? Or is this level of detail sufficient?\r\n- Can we leave considerations about how public keys are distributed and consumed to the HTTP API doc?\r\n- Is it reasonable to leave metadata-level considerations to the architecture doc.\r\n\r\nLet me know what you think so far, cc @chris-wood, @bemasc, @dvorak42, @jsalowey, @claucece, @armfazh ",
       "createdAt": "2021-09-29T13:00:43Z",
-      "updatedAt": "2021-12-09T13:34:54Z",
+      "updatedAt": "2021-12-14T00:18:51Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
@@ -4188,6 +4188,27 @@
           "body": "Thanks, @alxdavids. It's good for now. We may need to update the issuance and redemption details to use the new HTTP-based authentication challenge being worked on in parallel, but the core of the issuance flow will remain the same. ",
           "createdAt": "2021-12-09T13:34:54Z",
           "updatedAt": "2021-12-09T13:34:54Z"
+        },
+        {
+          "author": "alxdavids",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thanks, @alxdavids. It's good for now. We may need to update the issuance and redemption details to use the new HTTP-based authentication challenge being worked on in parallel, but the core of the issuance flow will remain the same.\r\n\r\nSounds good, shall I merge this for now?",
+          "createdAt": "2021-12-13T09:45:40Z",
+          "updatedAt": "2021-12-13T09:45:40Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't think we can merge this as-is. This being a new document would need to go through the adoption process (@bemasc can say more). Alternatively, we just replace the existing -protocol document with the contents in this PR.",
+          "createdAt": "2021-12-13T12:56:13Z",
+          "updatedAt": "2021-12-13T12:57:07Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I did this alignment in #87. @alxdavids, please have a look!",
+          "createdAt": "2021-12-14T00:18:50Z",
+          "updatedAt": "2021-12-14T00:18:50Z"
         }
       ],
       "reviews": [
@@ -4656,21 +4677,21 @@
       "id": "PR_kwDODeTEy84tOCWS",
       "title": "Example integration into HTTP doc",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/85",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This versions at the application layer. We could have a way for servers to advertise the variants they support if needed, which would be another simple resource to add. ",
       "createdAt": "2021-10-14T19:55:43Z",
-      "updatedAt": "2021-10-23T10:34:01Z",
+      "updatedAt": "2021-12-14T00:18:21Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/example-usage",
       "headRefOid": "e92e07ad03f4ca5163b81106f4f08e94a0efc493",
-      "closedAt": null,
+      "closedAt": "2021-12-14T00:18:21Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -4691,6 +4712,244 @@
         }
       ],
       "reviews": []
+    },
+    {
+      "number": 86,
+      "id": "PR_kwDODeTEy84vxx2f",
+      "title": "Refactor architecture document into PAT-like protocols and entities",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/86",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This reshuffles quite a bit to frame Privacy Pass as two protocols -- issuance and redemption -- run between Clients, Mediators, Issuers, and Origins. \r\n\r\nFirst draft, so there may be things we want to rephrase or reflow. \r\n\r\nRendered view of this PR [is here](https://ietf-wg-privacypass.github.io/base-drafts/caw/arch-refactor/draft-ietf-privacypass-architecture.html).",
+      "createdAt": "2021-12-13T19:12:16Z",
+      "updatedAt": "2021-12-13T20:42:08Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/arch-refactor",
+      "headRefOid": "4055e17e7ae4343e25b0677668e7b88b947765b6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy84xgvC7",
+          "commit": {
+            "abbreviatedOid": "c44ed07"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-13T19:30:12Z",
+          "updatedAt": "2021-12-13T19:41:40Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\r\nsuch as through the use of long-term cookies, are not privacy-friendly\r\n```",
+              "createdAt": "2021-12-13T19:30:12Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 63,
+              "body": "Does this need to say \"original\"?\r\n\r\n```suggestion\r\nThe most basic Privacy Pass protocol provides a set of cross-origin\r\n```",
+              "createdAt": "2021-12-13T19:31:20Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 73,
+              "body": "I think we should mention that the issuer/mediator can be combined as one entity. Perhaps, say these are three functions, rather than three entities?",
+              "createdAt": "2021-12-13T19:32:35Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "Perhaps the Client -> Mediator flow should indicate a first authentication/validation step?",
+              "createdAt": "2021-12-13T19:33:26Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 189,
+              "body": "Maybe call this Issuer identity? And maybe list it as the second item?",
+              "createdAt": "2021-12-13T19:34:30Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "I like the later diagram that has \"attest\"",
+              "createdAt": "2021-12-13T19:35:02Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 73,
+              "body": "We can also bike shed on the \"mediator\" name. I do like the \"attest\" verb you are using elsewhere. \"Attestor\"?",
+              "createdAt": "2021-12-13T19:35:39Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 391,
+              "body": "This should be noted as optional, if it's part of the description at all. I'd be tempted to not mention it as a top-level responsibility, but rather say that the mediator can attest to more than just validity of client, but can attest based on state it knows.",
+              "createdAt": "2021-12-13T19:37:17Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 394,
+              "body": "```suggestion\r\nsome issuance protocols that enforce rate limits. For example, the Issuer may\r\n```",
+              "createdAt": "2021-12-13T19:37:23Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 965,
+              "body": "I think we should be clear that this is only need for non-interactive passes.",
+              "createdAt": "2021-12-13T19:39:41Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 980,
+              "body": "We should mention tokens being scoped to an origin here, or being interactive, as a way to avoid this.",
+              "createdAt": "2021-12-13T19:40:20Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 1003,
+              "body": "AV and SRR are no longer defined in the document.",
+              "createdAt": "2021-12-13T19:40:45Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            },
+            {
+              "originalPosition": 1091,
+              "body": "I do like the approach of having clients limit the number of non-interactive cross-origin tokens they're willing to maintain from different Issuers.",
+              "createdAt": "2021-12-13T19:41:30Z",
+              "updatedAt": "2021-12-13T19:41:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xg3iS",
+          "commit": {
+            "abbreviatedOid": "4055e17"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-13T20:03:57Z",
+          "updatedAt": "2021-12-13T20:03:57Z",
+          "comments": [
+            {
+              "originalPosition": 189,
+              "body": "Yep, that's better \ud83d\udc4d ",
+              "createdAt": "2021-12-13T20:03:57Z",
+              "updatedAt": "2021-12-13T20:03:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xg-SR",
+          "commit": {
+            "abbreviatedOid": "4055e17"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-13T20:34:42Z",
+          "updatedAt": "2021-12-13T20:34:43Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "```suggestion\r\n Client        Attestor          Issuer          Origin\r\n\r\n    <---------------------------------------- Challenge \\\r\n                                                        |\r\n+--------------------------------------------\\          |\r\n| Attest --->                          |          |\r\n| TokenRequest ------------------>       |          |\r\n|                                 (validate) | Issuance | Redemption\r\n|                                 (evaluate) |   Flow   |   Flow\r\n|   <------------ TokenResponse      |          |\r\n---------------------------------------------/          |\r\n                                                        |\r\n```",
+              "createdAt": "2021-12-13T20:34:43Z",
+              "updatedAt": "2021-12-13T20:34:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xg_7i",
+          "commit": {
+            "abbreviatedOid": "4055e17"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-13T20:42:08Z",
+          "updatedAt": "2021-12-13T20:42:08Z",
+          "comments": [
+            {
+              "originalPosition": 354,
+              "body": "Can we call this Attester, have only one function, and talk about how the attester can attest to other attributes than client identity/legitimacy. For example, this could be geolocation or client state/rate limiting.",
+              "createdAt": "2021-12-13T20:42:08Z",
+              "updatedAt": "2021-12-13T20:42:08Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 87,
+      "id": "PR_kwDODeTEy84vymk_",
+      "title": "Aligned issuance protocol",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/87",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Built on the [latest architecture change](#86) and [HTTP-auth mechanism](https://github.com/tfpauly/privacy-proxy/blob/main/draft-pauly-privacypass-auth-scheme.md), and building on #83 as the opinionated approach. This includes both the POPRF variant and RSA variants.",
+      "createdAt": "2021-12-13T23:09:55Z",
+      "updatedAt": "2021-12-14T00:45:12Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/pp-issuance",
+      "headRefOid": "9d5d0d4263832b59ad34e5d0cfab74984e4fa212",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy84xhiXE",
+          "commit": {
+            "abbreviatedOid": "5ccc88b"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-13T23:44:26Z",
+          "updatedAt": "2021-12-14T00:44:10Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nabbrev: PP Issuance\r\n```",
+              "createdAt": "2021-12-13T23:44:27Z",
+              "updatedAt": "2021-12-14T00:44:10Z"
+            },
+            {
+              "originalPosition": 1121,
+              "body": "This would be a different token type, right?\r\n```suggestion\r\n    uint16_t token_type = 0x0002\r\n```",
+              "createdAt": "2021-12-14T00:42:43Z",
+              "updatedAt": "2021-12-14T00:44:10Z"
+            },
+            {
+              "originalPosition": 180,
+              "body": "```suggestion\r\n{{!BLINDRSA=I-D.irtf-cfrg-rsa-blind-signatures}}.\r\n```",
+              "createdAt": "2021-12-14T00:44:07Z",
+              "updatedAt": "2021-12-14T00:44:10Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
