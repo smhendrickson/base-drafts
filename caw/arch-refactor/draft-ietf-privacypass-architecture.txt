@@ -5,8 +5,8 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                                       LIP
 Intended status: Informational                                 C.A. Wood
-Expires: 16 June 2022                                         Cloudflare
-                                                        13 December 2021
+Expires: 17 June 2022                                         Cloudflare
+                                                        14 December 2021
 
 
                   Privacy Pass Architectural Framework
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2022.
+   This Internet-Draft will expire on 17 June 2022.
 
 Copyright Notice
 
@@ -355,7 +355,7 @@ Table of Contents
 3.2.1.2.  Accounting
 
    Another important role of the Mediator is accounting.  This is
-   necessary for some issunace protocols that enforce rate limits.  For
+   necessary for some issuance protocols that enforce rate limits.  For
    example, the Issuer may want to limit the number of tokens issued to
    a single Client over the course of a day.  If the Issuer does not
    learn information about the Client, then the Issuer cannot enforce
