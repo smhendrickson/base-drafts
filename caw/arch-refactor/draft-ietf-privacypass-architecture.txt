@@ -470,10 +470,10 @@ Table of Contents
 3.2.4.  Extensibility
 
    The Privacy Pass protocol and ecosystem are both intended to be
-   receptive to extensions that expand the current set of functionality.
-   All extensions to the Privacy Pass protocol SHOULD be specified as
-   separate documents that modify the content of this document in some
-   way.
+   receptive to extensions that expand the current set of
+   functionalities.  All extensions to the Privacy Pass protocol SHOULD
+   be specified as separate documents that modify the content of this
+   document in some way.
 
    Any such extension SHOULD come with a detailed analysis of the
    privacy impacts of the extension, why these impacts are justified,
