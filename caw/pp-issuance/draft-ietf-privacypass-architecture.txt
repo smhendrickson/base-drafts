@@ -975,17 +975,10 @@ Table of Contents
               Scale_final.pdf>.
 
    [I-D.ietf-privacypass-http-api]
-              Valdez, S., "Privacy Pass HTTP API", Work in Progress,
-              Internet-Draft, draft-ietf-privacypass-http-api-01, 12
-              July 2021, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-privacypass-http-api-01>.
+              "*** BROKEN REFERENCE ***".
 
    [I-D.ietf-privacypass-protocol]
-              Celi, S., Davidson, A., and A. Faz-Hernandez, "Privacy
-              Pass Protocol Specification", Work in Progress, Internet-
-              Draft, draft-ietf-privacypass-protocol-01, 22 February
-              2021, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              privacypass-protocol-01>.
+              "*** BROKEN REFERENCE ***".
 
    [KLOR20]   Kreuter, B., Lepoint, T., Orrù, M., and M. Raykova,
               "Anonymous Tokens with Private Metadata Bit", Advances in

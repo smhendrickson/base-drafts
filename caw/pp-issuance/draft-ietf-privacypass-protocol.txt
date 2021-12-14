@@ -68,12 +68,12 @@ Table of Contents
      4.2.  Issuer-to-Client Response
      4.3.  Finalization
      4.4.  Issuer Configuration
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
-   Appendix A.  Security considerations
-   Appendix B.  IANA considerations
-   Appendix C.  Acknowledgements
+   5.  Security considerations
+   6.  IANA considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
+   Appendix A.  Acknowledgements
    Authors' Addresses
 
 1.  Introduction
@@ -418,24 +418,45 @@ Table of Contents
    denoted key_id, is computed as SHA256(encoded_key), where encoded_key
    is a DER-encoded SubjectPublicKeyInfo object carrying pkI.
 
-5.  References
+5.  Security considerations
 
-5.1.  Normative References
+   This document outlines how to instantiate the Privacy Pass protocol
+   based on the VOPRF defined in [I-D.irtf-cfrg-voprf].  All security
+   considerations described in the VOPRF document also apply in the
+   Privacy Pass use-case.  Considerations related to broader privacy and
+   security concerns in a multi-client and multi-server setting are
+   deferred to the Architecture document
+   [I-D.ietf-privacypass-architecture].
+
+6.  IANA considerations
+
+   This document updates the "Token Type" Registry with the following
+   values.
+
+   +======+=============+========+==========+==========+===+===========+
+   |Value | Name        | Public | Public   | Private  |Nk | Reference |
+   |      |             |        | Metadata | Metadata |   |           |
+   +======+=============+========+==========+==========+===+===========+
+   |0x0001| OPRF(P-384, | N      | Y        | N        |48 | Section 3 |
+   |      | SHA-384)    |        |          |          |   |           |
+   +------+-------------+--------+----------+----------+---+-----------+
+   |0x0002| Blind RSA,  | Y      | N        | N        |512| Section 4 |
+   |      | 4096        |        |          |          |   |           |
+   +------+-------------+--------+----------+----------+---+-----------+
+
+                            Table 1: Token Types
+
+7.  References
+
+7.1.  Normative References
 
    [BLINDRSA] "*** BROKEN REFERENCE ***".
 
    [I-D.ietf-privacypass-architecture]
-              Davidson, A. and C. A. Wood, "Privacy Pass Architectural
-              Framework", Work in Progress, Internet-Draft, draft-ietf-
-              privacypass-architecture-01, 22 February 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-
-              privacypass-architecture-01>.
+              "*** BROKEN REFERENCE ***".
 
    [I-D.ietf-privacypass-http-api]
-              Valdez, S., "Privacy Pass HTTP API", Work in Progress,
-              Internet-Draft, draft-ietf-privacypass-http-api-01, 12
-              July 2021, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-privacypass-http-api-01>.
+              "*** BROKEN REFERENCE ***".
 
    [I-D.irtf-cfrg-voprf]
               Davidson, A., Faz-Hernandez, A., Sullivan, N., and C. A.
@@ -465,7 +486,7 @@ Table of Contents
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
 
-5.2.  Informative References
+7.2.  Informative References
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
@@ -475,34 +496,7 @@ Table of Contents
               Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March
               2014, <https://www.rfc-editor.org/rfc/rfc7159>.
 
-Appendix A.  Security considerations
-
-   This document outlines how to instantiate the Privacy Pass protocol
-   based on the VOPRF defined in [I-D.irtf-cfrg-voprf].  All security
-   considerations described in the VOPRF document also apply in the
-   Privacy Pass use-case.  Considerations related to broader privacy and
-   security concerns in a multi-client and multi-server setting are
-   deferred to the Architecture document
-   [I-D.ietf-privacypass-architecture].
-
-Appendix B.  IANA considerations
-
-   This document updates the "Token Type" Registry with the following
-   values.
-
-       +========+======================+========+=====+===========+
-       | Value  | Name                 | Public | Nk  | Reference |
-       +========+======================+========+=====+===========+
-       | 0x0000 | (reserved)           | N/A    | N/A | N/A       |
-       +--------+----------------------+--------+-----+-----------+
-       | 0x0001 | OPRF(P-384, SHA-384) | N      | 48  | Section 3 |
-       +--------+----------------------+--------+-----+-----------+
-       | 0x0002 | Blind RSA, 4096      | Y      | 512 | Section 4 |
-       +--------+----------------------+--------+-----+-----------+
-
-                           Table 1: Token Types
-
-Appendix C.  Acknowledgements
+Appendix A.  Acknowledgements
 
    The authors of this document would like to acknowledge the helpful
    feedback and discussions from Benjamin Schwartz, Joseph Salowey,
