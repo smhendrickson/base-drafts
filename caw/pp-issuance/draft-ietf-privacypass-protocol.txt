@@ -5,10 +5,10 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                            Brave Software
 Intended status: Informational                                 S. Valdez
-Expires: 16 June 2022                                         Google LLC
+Expires: 17 June 2022                                         Google LLC
                                                                C.A. Wood
                                                               Cloudflare
-                                                        13 December 2021
+                                                        14 December 2021
 
 
                      Privacy Pass Issuance Protocol
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2022.
+   This Internet-Draft will expire on 17 June 2022.
 
 Copyright Notice
 
