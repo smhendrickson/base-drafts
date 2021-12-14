@@ -1126,7 +1126,7 @@ of all participating entities.<a href="#section-abstract-1" class="pilcrow">¶</
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-issuance-protocol" class="xref">Issuance Protocol</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.1">
-                    <p id="section-toc.1-1.3.2.2.2.1.1"><a href="#section-3.2.1" class="xref">3.2.1</a>.  <a href="#name-mediator-role" class="xref">Mediator Role</a></p>
+                    <p id="section-toc.1-1.3.2.2.2.1.1"><a href="#section-3.2.1" class="xref">3.2.1</a>.  <a href="#name-attester-role" class="xref">Attester Role</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.2">
                     <p id="section-toc.1-1.3.2.2.2.2.1"><a href="#section-3.2.2" class="xref">3.2.2</a>.  <a href="#name-issuer-role" class="xref">Issuer Role</a></p>
@@ -1135,7 +1135,7 @@ of all participating entities.<a href="#section-abstract-1" class="pilcrow">¶</
                     <p id="section-toc.1-1.3.2.2.2.3.1"><a href="#section-3.2.3" class="xref">3.2.3</a>.  <a href="#name-metadata" class="xref">Metadata</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.4">
-                    <p id="section-toc.1-1.3.2.2.2.4.1"><a href="#section-3.2.4" class="xref">3.2.4</a>.  <a href="#name-extensibility" class="xref">Extensibility</a></p>
+                    <p id="section-toc.1-1.3.2.2.2.4.1"><a href="#section-3.2.4" class="xref">3.2.4</a>.  <a href="#name-issuance-protocol-extensibi" class="xref">Issuance Protocol Extensibility</a></p>
 </li>
                 </ul>
 </li>
@@ -1237,14 +1237,14 @@ revealing them cannot be linked back to the session where they were
 initially issued.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">At a high level, Privacy Pass is composed of two protocols: issuance
 and redemption. Issuance is a protocol between three logical entities:
-Client, Mediator, and Issuer. The Issuer is responsible for issuing
-tokens in response to requests from Clients. The Mediator is responsible
+Client, Attester, and Issuer. The Issuer is responsible for issuing
+tokens in response to requests from Clients. The Attester is responsible
 for attesting properties about the Client for which tokens are issued.
 For example, in the original Privacy Pass protocol <span>[<a href="#PPSRV" class="xref">PPSRV</a>]</span>, tokens were
-only issued to Clients that solved CAPTCHAs. In this context, the Mediator
+only issued to Clients that solved CAPTCHAs. In this context, the Attester
 attested that some client solved a CAPTCHA and the resulting token
 produced by the Issuer was proof of this fact. Depending on the information
-being attested, Mediators may also store state about individual Clients,
+being attested, Attesters may also store state about individual Clients,
 such as the number of overall tokens issued thus far.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The redemption protocol runs between Client and Origin (server). It allows
 Origins to challenge Clients to present one or more tokens for authorization.
@@ -1258,20 +1258,19 @@ the figure below.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <figure id="figure-1">
         <div class="alignLeft art-text artwork" id="section-1-6.1">
 <pre>
- Client        Mediator          Issuer          Origin
+ Client        Attester          Issuer          Origin
 
     &lt;---------------------------------------- Challenge \
                                                         |
 +--------------------------------------------\          |
-| TokenRequest ---&gt;                          |          |
-|                    TokenRequest ---&gt;       |          |
+| Attest ---&gt;                                |          |
+| TokenRequest ------------------&gt;           |          |
 |                                 (validate) | Issuance | Redemption
 |                                 (evaluate) |   Flow   |   Flow
-|                    &lt;--- TokenResponse      |          |
-|   &lt;--- TokenResponse                       |          |
+|           &lt;------------ TokenResponse      |          |
 ---------------------------------------------/          |
                                                         |
-     Response -------------------------------------- &gt;  /
+      Response -------------------------------------- &gt; /
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
@@ -1280,32 +1279,7 @@ the figure below.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </div>
 <p id="section-1-7">This document describes requirements for both issuance and redemption
 protocols. This document also describes ecosystem considerations that
-impact the stated privacy and security guarantees of the protocol.
-For instance, the number of servers issuing Privacy Pass tokens, along
-with the number of registered clients, determines the anonymity set of
-each individual client. Moreover, this can be influenced by other factors,
-such as the key rotation policy used by each server. There are also client
-behavior patterns that can reduce the effective security of the server.
-Additional considerations include:<a href="#section-1-7" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-1-8.1">How server key material should be managed and accessed.<a href="#section-1-8.1" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-1-8.2">Compatible server issuance and redemption running modes and associated
-expectations.<a href="#section-1-8.2" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-1-8.3">How clients should evaluate server trust relationships.<a href="#section-1-8.3" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-1-8.4">Security and privacy properties of the protocol.<a href="#section-1-8.4" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-1-8.5">A concrete assessment and parametrization of the privacy budget
-associated with different settings of the above policies.<a href="#section-1-8.5" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-1-8.6">The incorporation of potential extensions into the wider ecosystem.<a href="#section-1-8.6" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="section-1-9">Finally, we will discuss existing applications that make use of the
-Privacy Pass protocol, and highlight how these may fit with the proposed
-framework.<a href="#section-1-9" class="pilcrow">¶</a></p>
+impact the stated privacy and security guarantees of the protocol.<a href="#section-1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1325,9 +1299,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <li class="normal" id="section-2-3.2">Origin: An entity that challenges Clients for tokens.<a href="#section-2-3.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-3.3">Issuer: An entity that issues tokens to Clients for properties
-attested by the Mediator.<a href="#section-2-3.3" class="pilcrow">¶</a>
+attested by the Attester.<a href="#section-2-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-2-3.4">Mediator: An entity that attests to properties of Client for the
+        <li class="normal" id="section-2-3.4">Attester: An entity that attests to properties of Client for the
 purposes of token issuance.<a href="#section-2-3.4" class="pilcrow">¶</a>
 </li>
       </ul>
@@ -1339,7 +1313,7 @@ purposes of token issuance.<a href="#section-2-3.4" class="pilcrow">¶</a>
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-architecture" class="section-name selfRef">Architecture</a>
       </h2>
 <p id="section-3-1">The Privacy Pass architecture consists of four logical entities --
-Client, Origin, Issuer, and Mediator -- that work in concert as
+Client, Origin, Issuer, and Attester -- that work in concert as
 shown in <a href="#introduction" class="xref">Section 1</a> for token issuance and redemption. This
 section describes the purpose of token issuance and redemption
 and the requirements therein on the relevant participants.<a href="#section-3-1" class="pilcrow">¶</a></p>
@@ -1360,16 +1334,16 @@ required for producing the token. Different issuance protocols have different
 security properties, e.g., some issuance protocols may produce tokens that
 are publicly verifiable, whereas others may not have this property.<a href="#section-3.1-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-2.2">Interactive or non-interactive. Tokens can either be interactive or not.
+          <li class="normal" id="section-3.1-2.2">Issuer identity. Tokens identify which issuers are trusted for a given
+issuance protocol.<a href="#section-3.1-2.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.1-2.3">Interactive or non-interactive. Tokens can either be interactive or not.
 An interactive token is one which requires a freshly issued token based
 on the challenge, whereas a non-interactive token can be issued proactively
-and cached for future use.<a href="#section-3.1-2.2" class="pilcrow">¶</a>
+and cached for future use.<a href="#section-3.1-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-2.3">Per-domain or cross-domain. Tokens can be constrained to the Origin for
-which the challenge originated, or can be used across Origins.<a href="#section-3.1-2.3" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-3.1-2.4">Trusted issuer. Tokens identify which issuers are trusted for a given
-issuance protocol.<a href="#section-3.1-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-2.4">Per-domain or cross-domain. Tokens can be constrained to the Origin for
+which the challenge originated, or can be used across Origins.<a href="#section-3.1-2.4" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-3.1-3">Depending on the use case, Origins may need to maintain state to track
@@ -1395,7 +1369,7 @@ in the figure below.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <figure id="figure-2">
           <div class="alignLeft art-text artwork" id="section-3.2-2.1">
 <pre>
-  Origin          Client        Mediator          Issuer
+  Origin          Client        Attester          Issuer
 
                   +--------------------------------------\
     Challenge ----&gt; TokenRequest ---&gt;                    |
@@ -1447,73 +1421,48 @@ participant in the issuance protocol, or it can be provided via external means,
 e.g., through the use of an IP-hiding proxy service like Tor. In general,
 Clients SHOULD minimize or remove identifying information where possible when
 invoking the issuance protocol.<a href="#section-3.2-8" class="pilcrow">¶</a></p>
-<p id="section-3.2-9">Issuers MUST NOT issue tokens for Clients through untrusted Mediators. This is
-important because the Mediator's role is to vouch for trust in
+<p id="section-3.2-9">Issuers MUST NOT issue tokens for Clients through untrusted Attesters. This is
+important because the Attester's role is to vouch for trust in
 privacy-sensitive Client information, such as account identifiers or IP address
 information, to the Issuer. Tokens produced by an Issuer that admits issuance
-for any type of mediation cannot be relied on for any specific property.
-See <a href="#attestation" class="xref">Section 3.2.1.1</a> for more details.<a href="#section-3.2-9" class="pilcrow">¶</a></p>
-<div id="mediator-role">
+for any type of attestation cannot be relied on for any specific property.
+See <a href="#attester-role" class="xref">Section 3.2.1</a> for more details.<a href="#section-3.2-9" class="pilcrow">¶</a></p>
+<div id="attester-role">
 <section id="section-3.2.1">
-          <h4 id="name-mediator-role">
-<a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-mediator-role" class="section-name selfRef">Mediator Role</a>
+          <h4 id="name-attester-role">
+<a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-attester-role" class="section-name selfRef">Attester Role</a>
           </h4>
-<p id="section-3.2.1-1">Mediation is an important part of the issuance protocol. Mediaton involves
-two high level functions: attestation and accounting. These are described in
-more detail below.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
-<div id="attestation">
-<section id="section-3.2.1.1">
-            <h5 id="name-attestation">
-<a href="#section-3.2.1.1" class="section-number selfRef">3.2.1.1. </a><a href="#name-attestation" class="section-name selfRef">Attestation</a>
-            </h5>
-<p id="section-3.2.1.1-1">Attestation is the process by which the Clients bear witness, confirm, or
-authenticate so as to demonstrate a certain property about themselves that are
-used during issuance. Examples of attestation properties include, though are
-not limited to:<a href="#section-3.2.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.1-1">Attestation is an important part of the issuance protocol. Attestation is the
+process by which the Clients bear witness, confirm, or authenticate so as to
+demonstrate a certain property about themselves that are used during issuance.
+Examples of attestation properties include, though are not limited to:<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2.1.1-2.1">Capable of solving a CAPTCHA. Clients that solve CAPTCHA challenges can attest
+<li class="normal" id="section-3.2.1-2.1">Capable of solving a CAPTCHA. Clients that solve CAPTCHA challenges can attest
 to this capability for the purposes of being ruled out as a bot or otherwise
-automated Client.<a href="#section-3.2.1.1-2.1" class="pilcrow">¶</a>
+automated Client.<a href="#section-3.2.1-2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2.1.1-2.2">Valid account. Clients that possess valid application layer account
-identifiers, e.g., because they are paid subscribers for some serice, can
-attest to this fact.<a href="#section-3.2.1.1-2.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.2.1-2.2">Client state. Clients can be associated with state and the attestor can
+attest to this state. Examples of state include the number of issuance
+protocol invocations, the client's geographic region, and whether the
+client has a valid application-layer account.<a href="#section-3.2.1-2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2.1.1-2.3">Trusted device. Some Clients run on trusted hardware that are capable of
-producing device-level attestation statements.<a href="#section-3.2.1.1-2.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.2.1-2.3">Trusted device. Some Clients run on trusted hardware that are capable of
+producing device-level attestation statements.<a href="#section-3.2.1-2.3" class="pilcrow">¶</a>
 </li>
-            </ul>
-<p id="section-3.2.1.1-3">Each of these attestation types have different security properties. For
+          </ul>
+<p id="section-3.2.1-3">Each of these attestation types have different security properties. For
 example, attesting to having a valid account is different from attesting to be
-running on trusted hardware. In general, Mediators should accept a limited form
-of attestation formats.<a href="#section-3.2.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.2.1.1-4">Each attestation format also has an impact on the overall system privacy. For
+running on trusted hardware. In general, Attesters should accept a limited form
+of attestation formats.<a href="#section-3.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.1-4">Each attestation format also has an impact on the overall system privacy. For
 example, the number of users in possession of a single class of trusted device
 might be lesser than the number of users that can solve CAPTCHAs. Similarly,
 requiring a conjunction of attestation types could decrease the overall
 anonymity set size. For example, the number of Clients that have solved a
 CAPTCHA in the past day, have a valid account, and are running on a trusted
 device is lesser thant he number of Clients that have solved a CAPTCHA in the
-past day. Mediators should not admit attestation types that result in small
-anonymity sets.<a href="#section-3.2.1.1-4" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="accounting">
-<section id="section-3.2.1.2">
-            <h5 id="name-accounting">
-<a href="#section-3.2.1.2" class="section-number selfRef">3.2.1.2. </a><a href="#name-accounting" class="section-name selfRef">Accounting</a>
-            </h5>
-<p id="section-3.2.1.2-1">Another important role of the Mediator is accounting. This is necessary for
-some issuance protocols that enforce rate limits. For example, the Issuer may
-want to limit the number of tokens issued to a single Client over the course
-of a day. If the Issuer does not learn information about the Client, then the
-Issuer cannot enforce this limit on a per-Client basis. The Issuer could,
-however, enforce global rate limits, but these can be abused by malicious
-Clients at the determent of honest Clients. Thus, the task of accounting
-falls on the Mediator, since it is entrusted with some amount of
-privacy-sensitive Client information.<a href="#section-3.2.1.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
+past day. Attesters should not admit attestation types that result in small
+anonymity sets.<a href="#section-3.2.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-role">
@@ -1529,27 +1478,26 @@ Therefore, in practice, the number of Issuers should be bounded. The actual
 Issuers can be replaced with different Issuers as long as the total never
 exceeds these bounds. Moreover, Issuer replacements also have an effect on
 client anonymity that is similar to when a key rotation occurs. See <a href="#privacy" class="xref">Section 4</a>
-for more details about maintaining privacy with multiple servers.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
+for more details about maintaining privacy with multiple Issuers.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
 <div id="key-management">
 <section id="section-3.2.2.1">
             <h5 id="name-key-management">
 <a href="#section-3.2.2.1" class="section-number selfRef">3.2.2.1. </a><a href="#name-key-management" class="section-name selfRef">Key Management</a>
             </h5>
-<p id="section-3.2.2.1-1">To facilitate issuance, the Issuer MUST hold a Privacy Pass key pair at any
-given time. The server public key MUST be made available to all Clients in
-such a way that key rotations and other updates are publicly visible. The
-server MAY also require additional state for ensuring this.  The key material
-and protocol configuration that an Issuer uses to produce tokens corresponds to
-a number of different pieces of information.<a href="#section-3.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.2.1-1">To facilitate issuance, the Issuer MUST hold an Issuance key pair at any
+given time. The Issuer public key MUST be made available to all Clients in
+such a way that key rotations and other updates are publicly visible.
+The key material and protocol configuration that an Issuer uses to produce
+tokens corresponds to a number of different pieces of information.<a href="#section-3.2.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.1-2.1">The issuance protocol in use; and<a href="#section-3.2.2.1-2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2.2.1-2.2">The public keys that are active for the server.<a href="#section-3.2.2.1-2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-3.2.2.1-2.2">The public keys that are active for the Issuer.<a href="#section-3.2.2.1-2.2" class="pilcrow">¶</a>
 </li>
             </ul>
-<p id="section-3.2.2.1-3">The way that the server publishes and maintains this information impacts
+<p id="section-3.2.2.1-3">The way that the Issuer publishes and maintains this information impacts
 the effective privacy of the clients; see <a href="#privacy" class="xref">Section 4</a> for more details.
-The fundamental requirement for key management and discovery is that servers
+The fundamental requirement for key management and discovery is that Issuers
 must be unable to target specific clients with unique keys without detection.
 There are a number of ways in which this might be implemented:<a href="#section-3.2.2.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1562,7 +1510,7 @@ client behavior to ensure the registry state is consistent for all clients.<a hr
 from multiple network vantage points. This is done to ensure consistent
 keys to seemingly different clients.<a href="#section-3.2.2.1-4.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2.2.1-4.3">Clients embed server keys into software.<a href="#section-3.2.2.1-4.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-3.2.2.1-4.3">Clients embed Issuer keys into software.<a href="#section-3.2.2.1-4.3" class="pilcrow">¶</a>
 </li>
             </ul>
 <p id="section-3.2.2.1-5">As above, specific mechanisms for key management and discovery are out of scope
@@ -1575,15 +1523,15 @@ for this document.<a href="#section-3.2.2.1-5" class="pilcrow">¶</a></p>
 <a href="#section-3.2.2.2" class="section-number selfRef">3.2.2.2. </a><a href="#name-key-rotation" class="section-name selfRef">Key Rotation</a>
             </h5>
 <p id="section-3.2.2.2-1">Token issuance associates all issued tokens with a particular choice of
-key. If a server issues tokens with many keys, then this may harm the
+key. If an Issuer issues tokens with many keys, then this may harm the
 anonymity of the Client. For example, they would be able to map the
 Client's access patterns by inspecting which key each token they possess
 has been issued under.<a href="#section-3.2.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.2.2-2">To prevent against this, servers MUST only use one private key for
+<p id="section-3.2.2.2-2">To prevent against this, Issuers MUST only use one private key for
 issuing tokens at any given time. Servers MAY use one or more keys for
-redemption to allow servers for seamless key rotation.<a href="#section-3.2.2.2-2" class="pilcrow">¶</a></p>
+redemption to allow Issuers for seamless key rotation.<a href="#section-3.2.2.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.2.2-3">Servers may rotate keys as a means of revoking tokens issued under old
-or otherwise expired keys. Alternatively, servers may include expiration
+or otherwise expired keys. Alternatively, Issuers may include expiration
 information as metadata alongside the token; See <a href="#metadata" class="xref">Section 3.2.3</a> for more
 discussion about metadata constraints. Both techinques are equivalent
 since they cryptographically bind expiration to individual tokens.<a href="#section-3.2.2.2-3" class="pilcrow">¶</a></p>
@@ -1609,11 +1557,11 @@ for discussion about metadata limits.<a href="#section-3.2.3-1" class="pilcrow">
 <p id="section-3.2.3-2">Public metadata is that which clients can observe as part of the token
 issuance flow. Public metadata can either be transparent or opaque. For
 example, transparent public metadata is a value that the client either
-generates itself, or the server provides during the issuance flow and
+generates itself, or the Issuer provides during the issuance flow and
 the client can check for correctness. Opaque public metadata is metadata
 the client can see but cannot check for correctness. As an example, the
 opaque public metadata might be a "fraud detection signal", computed on
-behalf of the server, during token issuance. In normal circumstances,
+behalf of the Issuer, during token issuance. In normal circumstances,
 clients cannot determine if this value is correct or otherwise a tracking
 vector.<a href="#section-3.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3-3">Private metadata is that which clients cannot observe as part of the token
@@ -1627,18 +1575,16 @@ cryptographic protocol.<a href="#section-3.2.3-4" class="pilcrow">¶</a></p>
 </div>
 <div id="extensions">
 <section id="section-3.2.4">
-          <h4 id="name-extensibility">
-<a href="#section-3.2.4" class="section-number selfRef">3.2.4. </a><a href="#name-extensibility" class="section-name selfRef">Extensibility</a>
+          <h4 id="name-issuance-protocol-extensibi">
+<a href="#section-3.2.4" class="section-number selfRef">3.2.4. </a><a href="#name-issuance-protocol-extensibi" class="section-name selfRef">Issuance Protocol Extensibility</a>
           </h4>
-<p id="section-3.2.4-1">The Privacy Pass protocol and ecosystem are both intended to be
-receptive to extensions that expand the current set of functionalities.
-All extensions to the Privacy Pass protocol SHOULD be specified as separate
-documents that modify the content of this document in some way.<a href="#section-3.2.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.4-2">Any such extension SHOULD come with a detailed analysis of the privacy
-impacts of the extension, why these impacts are justified, and guidelines
-on changes to the parametrization in <a href="#parametrization" class="xref">Section 6</a>.
+<p id="section-3.2.4-1">The Privacy Pass protocol and ecosystem are both intended to be receptive to
+extensions that expand the current set of functionalities through new issuance
+protocols. Each issuance protocol SHOULD come with a detailed analysis of the
+privacy impacts of the extension, why these impacts are justified, and
+guidelines on changes to the parametrization in <a href="#parametrization" class="xref">Section 6</a>.
 Any extension to the Privacy Pass protocol MUST adhere to the guidelines
-specified in <a href="#issuer-role" class="xref">Section 3.2.2</a> for managing Issuer public key data.<a href="#section-3.2.4-2" class="pilcrow">¶</a></p>
+specified in <a href="#issuer-role" class="xref">Section 3.2.2</a> for managing Issuer public key data.<a href="#section-3.2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1651,7 +1597,7 @@ specified in <a href="#issuer-role" class="xref">Section 3.2.2</a> for managing 
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy considerations</a>
       </h2>
 <p id="section-4-1">The goal of the Privacy Pass ecosystem is to construct an environment
-that can easily measure (and maximize) the relative anonymity of any
+that can easily measure and maximize the relative anonymity of any
 Client that is part of it. An inherent feature of being part of this
 ecosystem is that any Client can only remain private relative to the
 entire space of users using the protocol. Moreover, by owning tokens
@@ -1667,18 +1613,18 @@ the Privacy Pass ecosystem must implement to prevent these actions.<a href="#sec
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-metadata-privacy-implicatio" class="section-name selfRef">Metadata Privacy Implications</a>
         </h3>
 <p id="section-4.1-1">Any metadata bits of information can be used to further segment the
-size of the Client's anonymity set. Any server that wanted to
+size of the Client's anonymity set. Any Issuer that wanted to
 track a single Client could add a single metadata bit to Client tokens. For
 the tracked Client it would set the bit to <code>1</code>, and <code>0</code> otherwise. Adding
 additional bits provides an exponential increase in tracking granularity
-similarly to introducing more servers (though with more potential
+similarly to introducing more Issuers (though with more potential
 targeting).<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">For this reason, the amount of metadata used by an server in creating
+<p id="section-4.1-2">For this reason, the amount of metadata used by an Issuer in creating
 redemption tokens must be taken into account -- together with the bits
-of information that server's may learn about Clients otherwise. Since this
-metadata may be useful for practical deployments of Privacy Pass, servers
+of information that Issuer's may learn about Clients otherwise. Since this
+metadata may be useful for practical deployments of Privacy Pass, Issuers
 must balance this against the reduction in Client privacy. In general,
-servers should permit no more than 32 bits of metadata, as this can
+Issuers should permit no more than 32 bits of metadata, as this can
 uniquely identify each possible user. We discuss this more in
 <a href="#parametrization" class="xref">Section 6</a>.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 </section>
@@ -1696,14 +1642,12 @@ part of a group of possible clients owning valid tokens for this key. To
 mechanize this attack strategy, an Issuer could introduce a key rotation
 policy that forces Clients into small key cycles. Thus, reducing the
 size of the anonymity set for these Clients.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Issuers SHOULD invoke key rotation for
-a period of time between 1 and 12 weeks. Key rotations
-represent a trade-off between Client privacy and continued Issuer
+<p id="section-4.2-2">Issuers SHOULD invoke key rotation for a period of time between 1 and 12 weeks.
+Key rotations represent a trade-off between Client privacy and continued Issuer
 security. Therefore, it is still important that key rotations occur on a
-regular cycle to reduce the harmfulness of an Issuer key
-compromise.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.2-3">With a large number of Clients, a minimum of one week gives a large enough window for
-Clients to participate in the Issuance protocol and thus enjoy the
+regular cycle to reduce the harmfulness of an Issuer key compromise.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">With a large number of Clients, a minimum of one week gives a large enough
+window for Clients to participate in the issuance protocol and thus enjoy the
 anonymity guarantees of being part of a larger group. A maximum of
 12 weeks limits the damage caused by a key compromise. If an Issuer
 realizes that a key compromise has occurred then the Issuer should
@@ -1893,13 +1837,13 @@ Clients from abusing the protocol.<a href="#section-5-1" class="pilcrow">¶</a><
         <h3 id="name-double-spend-protection">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-double-spend-protection" class="section-name selfRef">Double-spend protection</a>
         </h3>
-<p id="section-5.1-1">When applicable, all Origins SHOULD implement a robust storage-query
-mechanism for checking that tokens sent by clients have not been spent before.
-Such tokens only need to be checked for each Origin individually. But all
-Origins must perform global double-spend checks to avoid clients from
-exploiting the possibility of spending tokens more than once against
-distributed token checking systems. For the same reason, the global data
-storage must have quick update times. While an update is occurring it
+<p id="section-5.1-1">When applicable for non-interactive tokens, all Origins SHOULD implement a
+robust storage-query mechanism for checking that tokens sent by clients have
+not been spent before. Such tokens only need to be checked for each Origin
+individually. But all Origins must perform global double-spend checks to avoid
+clients from exploiting the possibility of spending tokens more than once
+against distributed token checking systems. For the same reason, the global
+data storage must have quick update times. While an update is occurring it
 may be possible for a malicious client to spend a token more than once.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1911,21 +1855,13 @@ may be possible for a malicious client to spend a token more than once.<a href="
 <p id="section-5.2-1">When a Client holds tokens for an Issuer, it is possible for any
 verifier to invoke that client to redeem tokens for that Issuer. This
 can lead to an attack where a malicious verifier can force a Client to
-spend all of their tokens for a given Issuer. To prevent this from
-happening, methods should be put into place to prevent many tokens from
-being redeemed at once.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">For example, it may be possible to cache a redemption for the entity
-that is invoking a token redemption. If the verifier requests more
-tokens then the Client simply returns the cached token that it returned
-previously. This could also be handled by simply not redeeming any
-tokens for verification if a redemption had already occurred in a given
-time window.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">In AV, the Client instead caches the SRR that it received in the
-asynchronous redemption exchange with the Issuer. If the same verifier
-attempts another redemption request, then the client simply returns the
-cached SRR. The SRRs can be revoked by the Issuer, if need be, by
-providing an expiry date or by signaling that records from a particular
-window need to be refreshed.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+spend all of their tokens from a given Issuer. To prevent this from
+happening, tokens can be scoped to single Origins such that they can only
+be redeemed within for a single Origin.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">If tokens are cross-Origin, Clients should use alternate methods to prevent
+many tokens from being redeemed at once. For example, if the Origin requests
+an excess of tokens, the Client could choose to not present any tokens for
+verification if a redemption had already occurred in a given time window.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
