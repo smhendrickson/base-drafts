@@ -175,15 +175,15 @@ Table of Contents
    The Client then creates a TokenRequest structured as follows:
 
    struct {
-      uint8_t token_type;
+      uint16_t token_type = 0x0001;
       uint8_t token_key_id;
       uint8_t blinded_msg[Nk];
    } TokenRequest;
 
    The structure fields are defined as follows:
 
-   *  "version" is a 1-octet integer, which matches the version in the
-      challenge.  This document defines version 1.
+   *  "token_type" is a 2-octet integer, which matches the type in the
+      challenge.
 
    *  "token_key_id" is the least significant byte of the key_id.
 
@@ -327,15 +327,15 @@ Table of Contents
    The Client then creates a TokenRequest structured as follows:
 
    struct {
-      uint8_t token_type;
+      uint16_t token_type = 0x0002
       uint8_t token_key_id;
       uint8_t blinded_msg[Nk];
    } TokenRequest;
 
    The structure fields are defined as follows:
 
-   *  "version" is a 1-octet integer, which matches the version in the
-      challenge.  This document defines version 1.
+   *  "version" is a 2-octet integer, which matches the type in the
+      challenge.
 
    *  "token_key_id" is the least significant byte of the key_id.
 
@@ -421,11 +421,11 @@ Table of Contents
 5.  Security considerations
 
    This document outlines how to instantiate the Issuance protocol based
-   on the VOPRF defined in [I-D.irtf-cfrg-voprf].  All security
-   considerations described in the VOPRF document also apply in the
-   Privacy Pass use-case.  Considerations related to broader privacy and
-   security concerns in a multi-Client and multi-Issuer setting are
-   deferred to the Architecture document
+   on the VOPRF defined in [OPRF] and blind RSA protocol defnied in
+   [BLINDRSA].  All security considerations described in the VOPRF
+   document also apply in the Privacy Pass use-case.  Considerations
+   related to broader privacy and security concerns in a multi-Client
+   and multi-Issuer setting are deferred to the Architecture document
    [I-D.ietf-privacypass-architecture].
 
 6.  IANA considerations
@@ -433,16 +433,16 @@ Table of Contents
    This document updates the "Token Type" Registry with the following
    values.
 
-   +======+=============+========+==========+==========+===+===========+
-   |Value | Name        | Public | Public   | Private  |Nk | Reference |
-   |      |             |        | Metadata | Metadata |   |           |
-   +======+=============+========+==========+==========+===+===========+
-   |0x0001| OPRF(P-384, | N      | Y        | N        |48 | Section 3 |
-   |      | SHA-384)    |        |          |          |   |           |
-   +------+-------------+--------+----------+----------+---+-----------+
-   |0x0002| Blind RSA,  | Y      | N        | N        |512| Section 4 |
-   |      | 4096        |        |          |          |   |           |
-   +------+-------------+--------+----------+----------+---+-----------+
+   +======+=============+============+========+========+===+===========+
+   |Value | Name        | Publicly   |Public  |Private |Nk | Reference |
+   |      |             | Verifiable |Metadata|Metadata|   |           |
+   +======+=============+============+========+========+===+===========+
+   |0x0001| OPRF(P-384, | N          |Y       |N       |48 | Section 3 |
+   |      | SHA-384)    |            |        |        |   |           |
+   +------+-------------+------------+--------+--------+---+-----------+
+   |0x0002| Blind RSA,  | Y          |N       |N       |512| Section 4 |
+   |      | 4096        |            |        |        |   |           |
+   +------+-------------+------------+--------+--------+---+-----------+
 
                             Table 1: Token Types
 
