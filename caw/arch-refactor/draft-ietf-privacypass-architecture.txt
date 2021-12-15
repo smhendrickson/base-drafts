@@ -5,8 +5,8 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                                       LIP
 Intended status: Informational                                 C.A. Wood
-Expires: 17 June 2022                                         Cloudflare
-                                                        14 December 2021
+Expires: 18 June 2022                                         Cloudflare
+                                                        15 December 2021
 
 
                   Privacy Pass Architectural Framework
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 June 2022.
+   This Internet-Draft will expire on 18 June 2022.
 
 Copyright Notice
 
@@ -104,26 +104,26 @@ Table of Contents
    session where they were initially issued.
 
    At a high level, Privacy Pass is composed of two protocols: issuance
-   and redemption.  Issuance is a protocol between a Client and two
-   functions: Attester and Issuer.  The Attester and Issuer can be
-   functions operated by the same protocol participant, but can also be
-   implemented separately.  The Issuer is responsible for issuing tokens
-   in response to requests from Clients.  The Attester is responsible
-   for attesting properties about the Client for which tokens are
-   issued.  The Issuer needs to be trusted by the server that later
-   redeems the token.  The Attester needs to either be operated by the
-   Issuer, or be operated by an entity the Issuer trusts to perform
-   valid attestation.  Clients might prefer to select different
-   Attesters, separate from the Issuer, to be able to use preferred
-   authentication methods or improve privacy by not directly
-   communicating with an Issuer.  Depending on the information being
-   attested, Attesters may also store state about individual Clients,
-   such as the number of overall tokens issued thus far.  As an example
-   of an Issuance protocol, in the original Privacy Pass protocol
-   [PPSRV], tokens were only issued to Clients that solved CAPTCHAs.  In
-   this context, the Attester attested that some client solved a CAPTCHA
-   and the resulting token produced by the Issuer was proof of this
-   fact.
+   and redemption.
+
+   The issuance protocol runs between a Client and two network functions
+   in the Privacy Pass architecture: Attestation and Issuance.  These
+   two network functions can be implemented by the same protocol
+   participant, but can also be implemented separately.  The Issuer is
+   responsible for issuing tokens in response to requests from Clients.
+   The Attester is responsible for attesting properties about the Client
+   for which tokens are issued.  The Issuer needs to be trusted by the
+   server that later redeems the token.  Attestation can be performed by
+   the Issuer or by an Attester that is trusted by the Issuer.  Clients
+   might prefer to select different Attesters, separate from the Issuer,
+   to be able to use preferred authentication methods or improve privacy
+   by not directly communicating with an Issuer.  Depending on the
+   attestation, Attesters can store state about a Client, such as the
+   number of overall tokens issued thus far.  As an example of an
+   Issuance protocol, in the original Privacy Pass protocol [PPSRV],
+   tokens were only issued to Clients that solved CAPTCHAs.  In this
+   context, the Attester attested that some client solved a CAPTCHA and
+   the resulting token produced by the Issuer was proof of this fact.
 
    The redemption protocol runs between Client and Origin (server).  It
    allows Origins to challenge Clients to present one or more tokens for
@@ -171,7 +171,7 @@ Table of Contents
    *  Origin: An entity that challenges Clients for tokens.
 
    *  Issuer: An entity that issues tokens to Clients for properties
-      attested by the Attester.
+      attested to by the Attester.
 
    *  Attester: An entity that attests to properties of Client for the
       purposes of token issuance.
@@ -298,10 +298,10 @@ Table of Contents
 3.2.1.  Attester Role
 
    Attestation is an important part of the issuance protocol.
-   Attestation is the process by which the Clients bear witness,
-   confirm, or authenticate so as to demonstrate a certain property
-   about themselves that are used during issuance.  Examples of
-   attestation properties include, though are not limited to:
+   Attestation is the process by which an Attester bears witness to,
+   confirms, or authenticates a Client so as to verify a property about
+   the Client that is required for Issuance.  Examples of attestation
+   properties include, though are not limited to:
 
    *  Capable of solving a CAPTCHA.  Clients that solve CAPTCHA
       challenges can attest to this capability for the purposes of being
