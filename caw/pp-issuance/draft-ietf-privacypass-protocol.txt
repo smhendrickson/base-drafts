@@ -5,10 +5,10 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                            Brave Software
 Intended status: Informational                                 S. Valdez
-Expires: 17 June 2022                                         Google LLC
+Expires: 18 June 2022                                         Google LLC
                                                                C.A. Wood
                                                               Cloudflare
-                                                        14 December 2021
+                                                        15 December 2021
 
 
                      Privacy Pass Issuance Protocol
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 June 2022.
+   This Internet-Draft will expire on 18 June 2022.
 
 Copyright Notice
 
@@ -420,8 +420,8 @@ Table of Contents
 
 5.  Security considerations
 
-   This document outlines how to instantiate the Privacy Pass protocol
-   based on the VOPRF defined in [I-D.irtf-cfrg-voprf].  All security
+   This document outlines how to instantiate the Issuance protocol based
+   on the VOPRF defined in [I-D.irtf-cfrg-voprf].  All security
    considerations described in the VOPRF document also apply in the
    Privacy Pass use-case.  Considerations related to broader privacy and
    security concerns in a multi-client and multi-server setting are
@@ -450,13 +450,24 @@ Table of Contents
 
 7.1.  Normative References
 
-   [BLINDRSA] "*** BROKEN REFERENCE ***".
+   [BLINDRSA] Denis, F., Jacobs, F., and C. A. Wood, "RSA Blind
+              Signatures", Work in Progress, Internet-Draft, draft-irtf-
+              cfrg-rsa-blind-signatures-02, 2 August 2021,
+              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
+              rsa-blind-signatures-02>.
 
    [I-D.ietf-privacypass-architecture]
-              "*** BROKEN REFERENCE ***".
+              Davidson, A. and C. A. Wood, "Privacy Pass Architectural
+              Framework", Work in Progress, Internet-Draft, draft-ietf-
+              privacypass-architecture-01, 22 February 2021,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-
+              privacypass-architecture-01>.
 
    [I-D.ietf-privacypass-http-api]
-              "*** BROKEN REFERENCE ***".
+              Valdez, S., "Privacy Pass HTTP API", Work in Progress,
+              Internet-Draft, draft-ietf-privacypass-http-api-01, 12
+              July 2021, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-privacypass-http-api-01>.
 
    [I-D.irtf-cfrg-voprf]
               Davidson, A., Faz-Hernandez, A., Sullivan, N., and C. A.
