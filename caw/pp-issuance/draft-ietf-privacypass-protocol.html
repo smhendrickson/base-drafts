@@ -1160,6 +1160,11 @@ metadata during the issuance flow.<a href="#section-abstract-1" class="pilcrow">
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-iana-considerations" class="xref">IANA considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-token-type" class="xref">Token Type</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a></p>
@@ -1617,49 +1622,56 @@ to the Architecture document <span>[<a href="#I-D.ietf-privacypass-architecture"
       <h2 id="name-iana-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA considerations</a>
       </h2>
-<p id="section-6-1">This document updates the "Token Type" Registry with the following values.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="token-type">
+<section id="section-6.1">
+        <h3 id="name-token-type">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-token-type" class="section-name selfRef">Token Type</a>
+        </h3>
+<p id="section-6.1-1">This document updates the "Token Type" Registry with the following values.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <span id="name-token-types"></span><div id="aeadid-values">
 <table class="center" id="table-1">
-        <caption>
+          <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
 <a href="#name-token-types" class="selfRef">Token Types</a>
-        </caption>
+          </caption>
 <thead>
-          <tr>
-            <th class="text-left" rowspan="1" colspan="1">Value</th>
-            <th class="text-left" rowspan="1" colspan="1">Name</th>
-            <th class="text-left" rowspan="1" colspan="1">Publicly Verifiable</th>
-            <th class="text-left" rowspan="1" colspan="1">Public Metadata</th>
-            <th class="text-left" rowspan="1" colspan="1">Private Metadata</th>
-            <th class="text-left" rowspan="1" colspan="1">Nk</th>
-            <th class="text-left" rowspan="1" colspan="1">Reference</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">0x0001</td>
-            <td class="text-left" rowspan="1" colspan="1">OPRF(P-384, SHA-384)</td>
-            <td class="text-left" rowspan="1" colspan="1">N</td>
-            <td class="text-left" rowspan="1" colspan="1">Y</td>
-            <td class="text-left" rowspan="1" colspan="1">N</td>
-            <td class="text-left" rowspan="1" colspan="1">48</td>
-            <td class="text-left" rowspan="1" colspan="1">
-              <a href="#private-flow" class="xref">Section 3</a>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Value</th>
+              <th class="text-left" rowspan="1" colspan="1">Name</th>
+              <th class="text-left" rowspan="1" colspan="1">Publicly Verifiable</th>
+              <th class="text-left" rowspan="1" colspan="1">Public Metadata</th>
+              <th class="text-left" rowspan="1" colspan="1">Private Metadata</th>
+              <th class="text-left" rowspan="1" colspan="1">Nk</th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">0x0001</td>
+              <td class="text-left" rowspan="1" colspan="1">OPRF(P-384, SHA-384)</td>
+              <td class="text-left" rowspan="1" colspan="1">N</td>
+              <td class="text-left" rowspan="1" colspan="1">Y</td>
+              <td class="text-left" rowspan="1" colspan="1">N</td>
+              <td class="text-left" rowspan="1" colspan="1">48</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <a href="#private-flow" class="xref">Section 3</a>
 </td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">0x0002</td>
-            <td class="text-left" rowspan="1" colspan="1">Blind RSA, 4096</td>
-            <td class="text-left" rowspan="1" colspan="1">Y</td>
-            <td class="text-left" rowspan="1" colspan="1">N</td>
-            <td class="text-left" rowspan="1" colspan="1">N</td>
-            <td class="text-left" rowspan="1" colspan="1">512</td>
-            <td class="text-left" rowspan="1" colspan="1">
-              <a href="#public-flow" class="xref">Section 4</a>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">0x0002</td>
+              <td class="text-left" rowspan="1" colspan="1">Blind RSA, 4096</td>
+              <td class="text-left" rowspan="1" colspan="1">Y</td>
+              <td class="text-left" rowspan="1" colspan="1">N</td>
+              <td class="text-left" rowspan="1" colspan="1">N</td>
+              <td class="text-left" rowspan="1" colspan="1">512</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <a href="#public-flow" class="xref">Section 4</a>
 </td>
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
 </div>
 </section>
 </div>

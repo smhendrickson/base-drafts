@@ -70,6 +70,7 @@ Table of Contents
      4.4.  Issuer Configuration
    5.  Security considerations
    6.  IANA considerations
+     6.1.  Token Type
    7.  References
      7.1.  Normative References
      7.2.  Informative References
@@ -429,6 +430,8 @@ Table of Contents
    [I-D.ietf-privacypass-architecture].
 
 6.  IANA considerations
+
+6.1.  Token Type
 
    This document updates the "Token Type" Registry with the following
    values.
