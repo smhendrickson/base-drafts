@@ -189,7 +189,7 @@ Table of Contents
    *  "token_type" is a 2-octet integer, which matches the type in the
       challenge.
 
-   *  "token_key_id" is the least significant byte of the key_id.
+   *  "issuer_key_id" is the least significant byte of the key_id.
 
    *  "blinded_msg" is the Nk-octet request defined above.
 
@@ -212,12 +212,12 @@ Table of Contents
    Upon receipt of the request, the Issuer validates the following
    conditions:
 
-   *  The TokenRequest contains a supported version
+   *  The TokenRequest contains a supported token_type
 
-   *  For version 1, the TokenRequest.token_key_id corresponds to a key
-      ID of a Public Key owned by the issuer.
+   *  The TokenRequest.issuer_key_id corresponds to a key ID of a Public
+      Key owned by the issuer.
 
-   *  For version 1, the TokenRequest.blinded_msg is of the correct size
+   *  The TokenRequest.blinded_msg is of the correct size
 
    If any of these conditions is not met, the Issuer MUST return an HTTP
    400 error to the Client, which will forward the error to the client.
@@ -364,13 +364,12 @@ Table of Contents
    Upon receipt of the request, the Issuer validates the following
    conditions:
 
-   *  The TokenRequest contains a supported version.
+   *  The TokenRequest contains a supported token_type.
 
-   *  For version 1, the TokenRequest.token_key_id corresponds to a key
-      ID of a Public Key owned by the issuer.
+   *  The TokenRequest.issuer_key_id corresponds to a key ID of a Public
+      Key owned by the issuer.
 
-   *  For version 1, the TokenRequest.blinded_msg is of the correct
-      size.
+   *  The TokenRequest.blinded_msg is of the correct size.
 
    If any of these conditions is not met, the Issuer MUST return an HTTP
    400 error to the Client, which will forward the error to the client.
