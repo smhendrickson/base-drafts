@@ -71,6 +71,9 @@ Table of Contents
    5.  Security considerations
    6.  IANA considerations
      6.1.  Token Type
+     6.2.  Media Types
+       6.2.1.  "message/token-request" media type
+       6.2.2.  "message/token-response" media type
    7.  References
      7.1.  Normative References
      7.2.  Informative References
@@ -448,6 +451,99 @@ Table of Contents
    +------+-------------+------------+--------+--------+---+-----------+
 
                             Table 1: Token Types
+
+6.2.  Media Types
+
+   This specification defines the following protocol messages, along
+   with their corresponding media types:
+
+   *  TokenRequest: "message/token-request"
+
+   *  TokenResponse: "message/token-response"
+
+   The definition for each media type is in the following subsections.
+
+6.2.1.  "message/token-request" media type
+
+   Type name:  message
+
+   Subtype name:  token-request
+
+   Required parameters:  N/A
+
+   Optional parameters:  None
+
+   Encoding considerations:  only "8bit" or "binary" is permitted
+
+   Security considerations:  see Section 5
+
+   Interoperability considerations:  N/A
+
+   Published specification:  this specification
+
+   Applications that use this media type:  N/A
+
+   Fragment identifier considerations:  N/A
+
+   Additional information:  Magic number(s):  N/A
+
+                            Deprecated alias names for this type:  N/A
+
+                            File extension(s):  N/A
+
+                            Macintosh file type code(s):  N/A
+
+   Person and email address to contact for further information:  see Aut
+      hors' Addresses section
+
+   Intended usage:  COMMON
+
+   Restrictions on usage:  N/A
+
+   Author:  see Authors' Addresses section
+
+   Change controller:  IESG
+
+6.2.2.  "message/token-response" media type
+
+   Type name:  message
+
+   Subtype name:  access-token-response
+
+   Required parameters:  N/A
+
+   Optional parameters:  None
+
+   Encoding considerations:  only "8bit" or "binary" is permitted
+
+   Security considerations:  see Section 5
+
+   Interoperability considerations:  N/A
+
+   Published specification:  this specification
+
+   Applications that use this media type:  N/A
+
+   Fragment identifier considerations:  N/A
+
+   Additional information:  Magic number(s):  N/A
+
+                            Deprecated alias names for this type:  N/A
+
+                            File extension(s):  N/A
+
+                            Macintosh file type code(s):  N/A
+
+   Person and email address to contact for further information:  see Aut
+      hors' Addresses section
+
+   Intended usage:  COMMON
+
+   Restrictions on usage:  N/A
+
+   Author:  see Authors' Addresses section
+
+   Change controller:  IESG
 
 7.  References
 
