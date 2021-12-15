@@ -1345,11 +1345,12 @@ content-length = 50
 </div>
 <p id="section-3.1-12">Upon receipt of the request, the Issuer validates the following conditions:<a href="#section-3.1-12" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-13.1">The TokenRequest contains a supported token_type<a href="#section-3.1-13.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.1-13.1">The TokenRequest contains a supported version<a href="#section-3.1-13.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-13.2">The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-3.1-13.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-13.2">For version 1, the TokenRequest.token_key_id corresponds to a key ID
+of a Public Key owned by the issuer.<a href="#section-3.1-13.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-13.3">The TokenRequest.blinded_msg is of the correct size<a href="#section-3.1-13.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-13.3">For version 1, the TokenRequest.blinded_msg is of the correct size<a href="#section-3.1-13.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-3.1-14">If any of these conditions is not met, the Issuer MUST return an HTTP 400 error
