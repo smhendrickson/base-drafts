@@ -138,16 +138,16 @@ Table of Contents
    the figure below.
 
       Origin          Client        Attester          Issuer
-  /-----------------------------------------------------------------------
-  |                 /--------------------------------------------\
-  |   Challenge ----> Attest --->                                |
-  |                 | TokenRequest ------------------>           |
-  |   Redemption    |                                 (validate) | Issuance
-  |      Flow       |                                 (evaluate) |   Flow
-  |                 |     <----------------------  TokenResponse |
-  |   <--- Response |                                            |
-  |                 \--------------------------------------------/
-  \-----------------------------------------------------------------------
+  /--------------------------------------------------------------------
+  |                 /-----------------------------------------\
+  |   Challenge ----> Attest --->                             |
+  |                 | TokenRequest --------------->           |
+  |   Redemption    |                              (validate) | Issuance
+  |      Flow       |                              (evaluate) |   Flow
+  |                 |     <-------------------  TokenResponse |
+  |   <--- Response |                                         |
+  |                 \-----------------------------------------/
+  \--------------------------------------------------------------------
 
            Figure 1: Privacy Pass Architectural Components
 
@@ -308,7 +308,7 @@ Table of Contents
       ruled out as a bot or otherwise automated Client.
 
    *  Client state.  Clients can be associated with state and the
-      attestor can attest to this state.  Examples of state include the
+      attester can attest to this state.  Examples of state include the
       number of issuance protocol invocations, the client's geographic
       region, and whether the client has a valid application-layer
       account.
@@ -396,7 +396,7 @@ Table of Contents
    old or otherwise expired keys.  Alternatively, Issuers may include
    expiration information as metadata alongside the token; See
    Section 3.2.3 for more discussion about metadata constraints.  Both
-   techinques are equivalent since they cryptographically bind
+   techniques are equivalent since they cryptographically bind
    expiration to individual tokens.
 
    Key rotations should be limited in frequency for similar reasons.

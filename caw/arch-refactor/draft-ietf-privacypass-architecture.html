@@ -1271,16 +1271,16 @@ the figure below.<a href="#section-1-6" class="pilcrow">¶</a></p>
         <div class="alignLeft art-text artwork" id="section-1-7.1">
 <pre>
       Origin          Client        Attester          Issuer
-  /-----------------------------------------------------------------------
-  |                 /--------------------------------------------\
-  |   Challenge ----&gt; Attest ---&gt;                                |
-  |                 | TokenRequest ------------------&gt;           |
-  |   Redemption    |                                 (validate) | Issuance
-  |      Flow       |                                 (evaluate) |   Flow
-  |                 |     &lt;----------------------  TokenResponse |
-  |   &lt;--- Response |                                            |
-  |                 \--------------------------------------------/
-  \-----------------------------------------------------------------------
+  /--------------------------------------------------------------------
+  |                 /-----------------------------------------\
+  |   Challenge ----&gt; Attest ---&gt;                             |
+  |                 | TokenRequest ---------------&gt;           |
+  |   Redemption    |                              (validate) | Issuance
+  |      Flow       |                              (evaluate) |   Flow
+  |                 |     &lt;-------------------  TokenResponse |
+  |   &lt;--- Response |                                         |
+  |                 \-----------------------------------------/
+  \--------------------------------------------------------------------
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
@@ -1452,7 +1452,7 @@ to:<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 to this capability for the purposes of being ruled out as a bot or otherwise
 automated Client.<a href="#section-3.2.1-2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-3.2.1-2.2">Client state. Clients can be associated with state and the attestor can
+            <li class="normal" id="section-3.2.1-2.2">Client state. Clients can be associated with state and the attester can
 attest to this state. Examples of state include the number of issuance
 protocol invocations, the client's geographic region, and whether the
 client has a valid application-layer account.<a href="#section-3.2.1-2.2" class="pilcrow">¶</a>
@@ -1544,7 +1544,7 @@ redemption to allow Issuers for seamless key rotation.<a href="#section-3.2.2.2-
 <p id="section-3.2.2.2-3">Servers may rotate keys as a means of revoking tokens issued under old
 or otherwise expired keys. Alternatively, Issuers may include expiration
 information as metadata alongside the token; See <a href="#metadata" class="xref">Section 3.2.3</a> for more
-discussion about metadata constraints. Both techinques are equivalent
+discussion about metadata constraints. Both techniques are equivalent
 since they cryptographically bind expiration to individual tokens.<a href="#section-3.2.2.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.2.2.2-4">Key rotations should be limited in frequency for similar reasons. See
 <a href="#parametrization" class="xref">Section 6</a> for guidelines on what frequency of key rotations
