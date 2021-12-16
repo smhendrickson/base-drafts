@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-12-14T00:57:26.543764+00:00",
+  "timestamp": "2021-12-16T00:54:15.520812+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -4114,7 +4114,7 @@
       "labels": [],
       "body": "This is my first draft of an integration document for replacing the current protocol doc. I've tried to keep it as concise as possible. A few questions:\r\n\r\n- Would it be better to be more specific about how the POPRF algorithms are used? Or is this level of detail sufficient?\r\n- Can we leave considerations about how public keys are distributed and consumed to the HTTP API doc?\r\n- Is it reasonable to leave metadata-level considerations to the architecture doc.\r\n\r\nLet me know what you think so far, cc @chris-wood, @bemasc, @dvorak42, @jsalowey, @claucece, @armfazh ",
       "createdAt": "2021-09-29T13:00:43Z",
-      "updatedAt": "2021-12-14T00:18:51Z",
+      "updatedAt": "2021-12-14T18:05:30Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
@@ -4209,6 +4209,13 @@
           "body": "I did this alignment in #87. @alxdavids, please have a look!",
           "createdAt": "2021-12-14T00:18:50Z",
           "updatedAt": "2021-12-14T00:18:50Z"
+        },
+        {
+          "author": "alxdavids",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I did this alignment in #87. @alxdavids, please have a look!\r\n\r\nSounds good, I will take a look at this tomorrow morning my time \ud83d\udc4d ",
+          "createdAt": "2021-12-14T18:05:30Z",
+          "updatedAt": "2021-12-14T18:05:30Z"
         }
       ],
       "reviews": [
@@ -4725,13 +4732,13 @@
       "labels": [],
       "body": "This reshuffles quite a bit to frame Privacy Pass as two protocols -- issuance and redemption -- run between Clients, Mediators, Issuers, and Origins. \r\n\r\nFirst draft, so there may be things we want to rephrase or reflow. \r\n\r\nRendered view of this PR [is here](https://ietf-wg-privacypass.github.io/base-drafts/caw/arch-refactor/draft-ietf-privacypass-architecture.html).",
       "createdAt": "2021-12-13T19:12:16Z",
-      "updatedAt": "2021-12-13T20:42:08Z",
+      "updatedAt": "2021-12-15T17:49:43Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/arch-refactor",
-      "headRefOid": "4055e17e7ae4343e25b0677668e7b88b947765b6",
+      "headRefOid": "1a3847ac904cb4f69bc807ee41cc50bba6ef86ff",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4889,6 +4896,390 @@
               "updatedAt": "2021-12-13T20:42:08Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xiV5b",
+          "commit": {
+            "abbreviatedOid": "4055e17"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "A few comments, but this is a great cut! Thanks, Chris!",
+          "createdAt": "2021-12-14T07:08:17Z",
+          "updatedAt": "2021-12-14T07:51:36Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "I definitely like this new figure better.",
+              "createdAt": "2021-12-14T07:08:18Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 119,
+              "body": "This and the following points all seem unnecessary in the Intro, given the preceding sentence that says that the document will describe ecosystem considerations.",
+              "createdAt": "2021-12-14T07:13:32Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 339,
+              "body": "```suggestion\r\nDepending on the use case, issuance may require some form of Client\r\n```",
+              "createdAt": "2021-12-14T07:20:58Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 362,
+              "body": "```suggestion\r\nAttestation is the process by which the Clients bear witness, confirm, or\r\n```",
+              "createdAt": "2021-12-14T07:22:48Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 417,
+              "body": "This is the first time \"Privacy Pass key pair\" is mentioned. Given that this key pair is described below, perhaps rename the section \"Privacy Pass Keys\"?\r\n\r\nAlso, server public key should be Issuer public key, right?",
+              "createdAt": "2021-12-14T07:25:56Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 420,
+              "body": "unclear: for ensuring what?",
+              "createdAt": "2021-12-14T07:29:59Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 594,
+              "body": "```suggestion\r\nreceptive to extensions that expand the current set of functionalities.\r\n```",
+              "createdAt": "2021-12-14T07:31:49Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 596,
+              "body": "I don't understand this requirement -- why SHOULD extensions modify this document? Also, there's a Redemption protocol and an Issuance protocol -- there is no mention of the Privacy Pass protocol so far in this doc.",
+              "createdAt": "2021-12-14T07:32:40Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 607,
+              "body": "```suggestion\r\nthat can easily measure and maximize the relative anonymity of any\r\n```",
+              "createdAt": "2021-12-14T07:37:04Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 711,
+              "body": "```suggestion\r\nIssuers SHOULD invoke key rotation for\r\na period of time between 1 and 12 weeks. Key rotations\r\n```\r\nRECOMMENDED and SHOULD have the same semantic, and SHOULD seems more direct here. Also, if there's a SHOULD, the recommendation should be clear.",
+              "createdAt": "2021-12-14T07:42:03Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 716,
+              "body": "```suggestion\r\nregular cycle to reduce the harmfulness of an Issuer key\r\n```",
+              "createdAt": "2021-12-14T07:42:46Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 741,
+              "body": "```suggestion\r\nWith a large number of Clients, a minimum of one week gives a large enough window for\r\nClients to participate in the Issuance protocol and thus enjoy the\r\nanonymity guarantees of being part of a larger group. A maximum of\r\n```",
+              "createdAt": "2021-12-14T07:44:04Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 742,
+              "body": "```suggestion\r\n12 weeks limits the damage caused by a key compromise. If an Issuer\r\n```",
+              "createdAt": "2021-12-14T07:45:14Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            },
+            {
+              "originalPosition": 752,
+              "body": "```suggestion\r\na Client for a token from each Issuer, Origins can learn information about\r\n```",
+              "createdAt": "2021-12-14T07:47:45Z",
+              "updatedAt": "2021-12-14T07:51:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xkK2n",
+          "commit": {
+            "abbreviatedOid": "9ecd592"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-14T14:20:57Z",
+          "updatedAt": "2021-12-14T14:20:57Z",
+          "comments": [
+            {
+              "originalPosition": 420,
+              "body": "I'm not sure -- this is leftover text, so I'll just remove it.",
+              "createdAt": "2021-12-14T14:20:57Z",
+              "updatedAt": "2021-12-14T14:20:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xkNjQ",
+          "commit": {
+            "abbreviatedOid": "9ecd592"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-14T14:28:42Z",
+          "updatedAt": "2021-12-14T14:28:42Z",
+          "comments": [
+            {
+              "originalPosition": 596,
+              "body": "Rephrased!",
+              "createdAt": "2021-12-14T14:28:42Z",
+              "updatedAt": "2021-12-14T14:28:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xlm22",
+          "commit": {
+            "abbreviatedOid": "c02812e"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-14T19:24:54Z",
+          "updatedAt": "2021-12-14T19:24:56Z",
+          "comments": [
+            {
+              "originalPosition": 101,
+              "body": "```suggestion\r\nAt a high level, Privacy Pass is composed of two protocols: issuance\r\nand redemption.\r\n\r\nIssuance is a protocol between a Client and two functions: Attester and Issuer.\r\nThe Attester and Issuer can be functions operated by the same protocol participant,\r\nbut can also be implemented separately. The Issuer is responsible for issuing tokens\r\nin response to requests from Clients. The Attester is responsible for attesting\r\nproperties about the Client for which tokens are issued. The Issuer needs to be\r\ntrusted by the server that later redeems the token. The Attester needs to either be\r\noperated by the Issuer, or be operated by an entity the Issuer trusts to perform valid\r\nattestation. Clients might prefer to select different Attesters, separate from the\r\nIssuer, to be able to use preferred authentication methods or improve privacy by\r\nnot directly communicating with an Issuer. Depending on the information being attested, Attesters may also store state about individual Clients, such as the number of\r\noverall tokens issued thus far. As an example of an Issuance protocol, in the\r\noriginal Privacy Pass protocol {{PPSRV}}, tokens were only issued to Clients\r\nthat solved CAPTCHAs. In this context, the Attester attested that some client\r\nsolved a CAPTCHA and the resulting token produced by the Issuer was proof of\r\nthis fact.\r\n```",
+              "createdAt": "2021-12-14T19:24:54Z",
+              "updatedAt": "2021-12-14T19:24:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xmFDu",
+          "commit": {
+            "abbreviatedOid": "33fbe78"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-14T21:33:57Z",
+          "updatedAt": "2021-12-14T21:33:57Z",
+          "comments": [
+            {
+              "originalPosition": 101,
+              "body": "Applied with some tweaks",
+              "createdAt": "2021-12-14T21:33:57Z",
+              "updatedAt": "2021-12-14T21:33:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xnC9R",
+          "commit": {
+            "abbreviatedOid": "33fbe78"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "A few comments; thanks for the quick turnaround!",
+          "createdAt": "2021-12-15T05:46:57Z",
+          "updatedAt": "2021-12-15T06:09:52Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nand redemption.\r\n\r\nThe issuance protocol runs between a Client and two network functions in the Privacy \r\nPass architecture: Attestation and Issuance. These two network functions can be\r\nimplemented by the\r\n```",
+              "createdAt": "2021-12-15T05:46:57Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "Move these descriptions of Issuer and Attester to right after they are introducted above (after `two network functions: Attester and Issuer`).\r\n\r\nAlso, s/server/Origin",
+              "createdAt": "2021-12-15T05:48:28Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\nredeems the token. Attestation can be performed by the Issuer or by an\r\nAttester that is trusted by the Issuer.\r\n```",
+              "createdAt": "2021-12-15T05:54:10Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\nto be able to use preferred authentication methods or to improve privacy by communicating\r\nindirectly with an Issuer, proxied or mediated through an Attester. Depending on the information being\r\n```",
+              "createdAt": "2021-12-15T05:56:33Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\ndirectly communicating with an Issuer. Depending on the attestation,\r\nAttesters can store state about a Client, such as the\r\n```",
+              "createdAt": "2021-12-15T06:01:06Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 91,
+              "body": "```suggestion\r\n  attested to by the Attester.\r\n```",
+              "createdAt": "2021-12-15T06:02:19Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 93,
+              "body": "```suggestion\r\n- Attester: An entity that attests to properties of Client for the\r\n  purposes of token issuance.\r\n```\r\n```suggestion\r\n- Attester: An entity that attests to the properties of a Client required by an Issuer\r\n  for token issuance.\r\n```",
+              "createdAt": "2021-12-15T06:04:15Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            },
+            {
+              "originalPosition": 167,
+              "body": "`bear witness` seems strange. What can a Client bearing witness to about itself? Maybe this should be `by which an Attester bears witness to, confirms, or authenticates a Client so as to verify a property about the Client that is required for Issuance.`",
+              "createdAt": "2021-12-15T06:07:19Z",
+              "updatedAt": "2021-12-15T06:09:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xpVHB",
+          "commit": {
+            "abbreviatedOid": "83feb75"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T14:47:03Z",
+          "updatedAt": "2021-12-15T14:47:03Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "As discussed, I don't think we should describe the Attester as a proxy.",
+              "createdAt": "2021-12-15T14:47:03Z",
+              "updatedAt": "2021-12-15T14:47:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xpWhT",
+          "commit": {
+            "abbreviatedOid": "7700fd4"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T14:51:03Z",
+          "updatedAt": "2021-12-15T14:51:03Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "The descriptions of these roles _are_ right after they're introduced, so I'm not sure what this looking for here. Leave a suggestion?",
+              "createdAt": "2021-12-15T14:51:03Z",
+              "updatedAt": "2021-12-15T14:51:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xpXAl",
+          "commit": {
+            "abbreviatedOid": "ba8d3ab"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T14:52:24Z",
+          "updatedAt": "2021-12-15T14:52:24Z",
+          "comments": [
+            {
+              "originalPosition": 167,
+              "body": "Yeah, that's better!",
+              "createdAt": "2021-12-15T14:52:24Z",
+              "updatedAt": "2021-12-15T14:52:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xqEi6",
+          "commit": {
+            "abbreviatedOid": "ba8d3ab"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T17:16:34Z",
+          "updatedAt": "2021-12-15T17:26:57Z",
+          "comments": [
+            {
+              "originalPosition": 361,
+              "body": "Maybe later on, but should it be explicitly called out that some forms of the protocol might collapse this into another role?",
+              "createdAt": "2021-12-15T17:16:34Z",
+              "updatedAt": "2021-12-15T17:26:57Z"
+            },
+            {
+              "originalPosition": 390,
+              "body": "nit: than the",
+              "createdAt": "2021-12-15T17:22:01Z",
+              "updatedAt": "2021-12-15T17:26:57Z"
+            },
+            {
+              "originalPosition": 372,
+              "body": "Maybe worth splitting out client identity and client issuance state?",
+              "createdAt": "2021-12-15T17:24:38Z",
+              "updatedAt": "2021-12-15T17:26:57Z"
+            },
+            {
+              "originalPosition": 122,
+              "body": "Maybe worth moving Origin to the left to match the other figures?",
+              "createdAt": "2021-12-15T17:25:09Z",
+              "updatedAt": "2021-12-15T17:26:57Z"
+            },
+            {
+              "originalPosition": 82,
+              "body": "cross-origin is a little odd now, since the per-origin tokens aren't quite \"cross-origin\" in the traditional sense versus cross between Origin and Issuer.",
+              "createdAt": "2021-12-15T17:26:33Z",
+              "updatedAt": "2021-12-15T17:26:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xqJPP",
+          "commit": {
+            "abbreviatedOid": "ba8d3ab"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T17:33:43Z",
+          "updatedAt": "2021-12-15T17:33:44Z",
+          "comments": [
+            {
+              "originalPosition": 82,
+              "body": "Hmm, I don't follow. Can you elaborate?",
+              "createdAt": "2021-12-15T17:33:43Z",
+              "updatedAt": "2021-12-15T17:33:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xqJRw",
+          "commit": {
+            "abbreviatedOid": "ba8d3ab"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T17:33:52Z",
+          "updatedAt": "2021-12-15T17:33:53Z",
+          "comments": [
+            {
+              "originalPosition": 122,
+              "body": "Sure, I'll play with it and see what works.",
+              "createdAt": "2021-12-15T17:33:52Z",
+              "updatedAt": "2021-12-15T17:33:53Z"
+            }
+          ]
         }
       ]
     },
@@ -4904,13 +5295,13 @@
       "labels": [],
       "body": "Built on the [latest architecture change](#86) and [HTTP-auth mechanism](https://github.com/tfpauly/privacy-proxy/blob/main/draft-pauly-privacypass-auth-scheme.md), and building on #83 as the opinionated approach. This includes both the POPRF variant and RSA variants.",
       "createdAt": "2021-12-13T23:09:55Z",
-      "updatedAt": "2021-12-14T00:45:12Z",
+      "updatedAt": "2021-12-15T23:34:29Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/pp-issuance",
-      "headRefOid": "9d5d0d4263832b59ad34e5d0cfab74984e4fa212",
+      "headRefOid": "4c12ee30fae5a0b49957177f7e2916ba06d92f1e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4946,6 +5337,325 @@
               "body": "```suggestion\r\n{{!BLINDRSA=I-D.irtf-cfrg-rsa-blind-signatures}}.\r\n```",
               "createdAt": "2021-12-14T00:44:07Z",
               "updatedAt": "2021-12-14T00:44:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xnNCN",
+          "commit": {
+            "abbreviatedOid": "26f381d"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "LGTM, a couple of nits.",
+          "createdAt": "2021-12-15T06:37:51Z",
+          "updatedAt": "2021-12-15T06:39:07Z",
+          "comments": [
+            {
+              "originalPosition": 1184,
+              "body": "```suggestion\r\nThis document outlines how to instantiate the Issuance protocol\r\n```",
+              "createdAt": "2021-12-15T06:37:52Z",
+              "updatedAt": "2021-12-15T06:39:07Z"
+            },
+            {
+              "originalPosition": 1188,
+              "body": "```suggestion\r\nconcerns in a multi-Client and multi-Issuer setting are deferred to the\r\n```",
+              "createdAt": "2021-12-15T06:38:09Z",
+              "updatedAt": "2021-12-15T06:39:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xpnk7",
+          "commit": {
+            "abbreviatedOid": "e435a2e"
+          },
+          "author": "alxdavids",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "It looks fine to me \ud83d\udc4d ",
+          "createdAt": "2021-12-15T15:40:48Z",
+          "updatedAt": "2021-12-15T15:41:53Z",
+          "comments": [
+            {
+              "originalPosition": 1185,
+              "body": "Should these considerations also ref the blind RSA doc?",
+              "createdAt": "2021-12-15T15:40:49Z",
+              "updatedAt": "2021-12-15T15:41:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xprnJ",
+          "commit": {
+            "abbreviatedOid": "e435a2e"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-12-15T15:53:49Z",
+          "updatedAt": "2021-12-15T15:53:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy84xqCof",
+          "commit": {
+            "abbreviatedOid": "e435a2e"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T17:09:53Z",
+          "updatedAt": "2021-12-15T17:13:38Z",
+          "comments": [
+            {
+              "originalPosition": 459,
+              "body": "Should this be token_type or the struct updated up above?",
+              "createdAt": "2021-12-15T17:09:53Z",
+              "updatedAt": "2021-12-15T17:13:38Z"
+            },
+            {
+              "originalPosition": 893,
+              "body": "nit: Same as above.",
+              "createdAt": "2021-12-15T17:11:59Z",
+              "updatedAt": "2021-12-15T17:13:38Z"
+            },
+            {
+              "originalPosition": 1234,
+              "body": "Public -> Publicly Verifiable since we have a  Public Metadata column now?",
+              "createdAt": "2021-12-15T17:13:24Z",
+              "updatedAt": "2021-12-15T17:13:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xqFuC",
+          "commit": {
+            "abbreviatedOid": "e435a2e"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T17:20:46Z",
+          "updatedAt": "2021-12-15T17:20:46Z",
+          "comments": [
+            {
+              "originalPosition": 459,
+              "body": "Yep!",
+              "createdAt": "2021-12-15T17:20:46Z",
+              "updatedAt": "2021-12-15T17:20:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xqFz1",
+          "commit": {
+            "abbreviatedOid": "e435a2e"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T17:21:06Z",
+          "updatedAt": "2021-12-15T17:21:06Z",
+          "comments": [
+            {
+              "originalPosition": 1234,
+              "body": "Yep, good suggestion.",
+              "createdAt": "2021-12-15T17:21:06Z",
+              "updatedAt": "2021-12-15T17:21:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xrQHR",
+          "commit": {
+            "abbreviatedOid": "f87c7f9"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T21:27:44Z",
+          "updatedAt": "2021-12-15T21:27:44Z",
+          "comments": [
+            {
+              "originalPosition": 1196,
+              "body": "```suggestion\r\n## Token Type\r\n\r\nThis document updates the \"Token Type\" Registry with the following values.\r\n```",
+              "createdAt": "2021-12-15T21:27:44Z",
+              "updatedAt": "2021-12-15T21:27:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xrQYo",
+          "commit": {
+            "abbreviatedOid": "f87c7f9"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T21:29:04Z",
+          "updatedAt": "2021-12-15T21:29:10Z",
+          "comments": [
+            {
+              "originalPosition": 1236,
+              "body": "```suggestion\r\n{: #aeadid-values title=\"Token Types\"}\r\n\r\n## Media Types\r\n\r\nThis specification defines the following protocol messages, along with their\r\ncorresponding media types:\r\n\r\n- TokenRequest: \"message/token-request\"\r\n- TokenResponse: \"message/token-response\"\r\n\r\nThe definition for each media type is in the following subsections.\r\n\r\n### \"message/token-request\" media type\r\n\r\nType name:\r\n\r\n: message\r\n\r\nSubtype name:\r\n\r\n: token-request\r\n\r\nRequired parameters:\r\n\r\n: N/A\r\n\r\nOptional parameters:\r\n\r\n: None\r\n\r\nEncoding considerations:\r\n\r\n: only \"8bit\" or \"binary\" is permitted\r\n\r\nSecurity considerations:\r\n\r\n: see {{issuance}}\r\n\r\nInteroperability considerations:\r\n\r\n: N/A\r\n\r\nPublished specification:\r\n\r\n: this specification\r\n\r\nApplications that use this media type:\r\n\r\n: N/A\r\n\r\nFragment identifier considerations:\r\n\r\n: N/A\r\n\r\nAdditional information:\r\n\r\n: <dl>\r\n  <dt>Magic number(s):</dt><dd>N/A</dd>\r\n  <dt>Deprecated alias names for this type:</dt><dd>N/A</dd>\r\n  <dt>File extension(s):</dt><dd>N/A</dd>\r\n  <dt>Macintosh file type code(s):</dt><dd>N/A</dd>\r\n  </dl>\r\n\r\nPerson and email address to contact for further information:\r\n\r\n: see Authors' Addresses section\r\n\r\nIntended usage:\r\n\r\n: COMMON\r\n\r\nRestrictions on usage:\r\n\r\n: N/A\r\n\r\nAuthor:\r\n\r\n: see Authors' Addresses section\r\n\r\nChange controller:\r\n\r\n: IESG\r\n\r\n### \"message/token-response\" media type\r\n\r\nType name:\r\n\r\n: message\r\n\r\nSubtype name:\r\n\r\n: access-token-response\r\n\r\nRequired parameters:\r\n\r\n: N/A\r\n\r\nOptional parameters:\r\n\r\n: None\r\n\r\nEncoding considerations:\r\n\r\n: only \"8bit\" or \"binary\" is permitted\r\n\r\nSecurity considerations:\r\n\r\n: see {{issuance}}\r\n\r\nInteroperability considerations:\r\n\r\n: N/A\r\n\r\nPublished specification:\r\n\r\n: this specification\r\n\r\nApplications that use this media type:\r\n\r\n: N/A\r\n\r\nFragment identifier considerations:\r\n\r\n: N/A\r\n\r\nAdditional information:\r\n\r\n: <dl>\r\n  <dt>Magic number(s):</dt><dd>N/A</dd>\r\n  <dt>Deprecated alias names for this type:</dt><dd>N/A</dd>\r\n  <dt>File extension(s):</dt><dd>N/A</dd>\r\n  <dt>Macintosh file type code(s):</dt><dd>N/A</dd>\r\n  </dl>\r\n\r\nPerson and email address to contact for further information:\r\n\r\n: see Authors' Addresses section\r\n\r\nIntended usage:\r\n\r\n: COMMON\r\n\r\nRestrictions on usage:\r\n\r\n: N/A\r\n\r\nAuthor:\r\n\r\n: see Authors' Addresses section\r\n\r\nChange controller:\r\n\r\n: IESG\r\n```",
+              "createdAt": "2021-12-15T21:29:04Z",
+              "updatedAt": "2021-12-15T21:29:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xriUY",
+          "commit": {
+            "abbreviatedOid": "f8f0748"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T23:08:31Z",
+          "updatedAt": "2021-12-15T23:08:32Z",
+          "comments": [
+            {
+              "originalPosition": 730,
+              "body": "```suggestion\r\n- \"token_type\" is a 2-octet integer, which matches the type in the challenge.\r\n```",
+              "createdAt": "2021-12-15T23:08:32Z",
+              "updatedAt": "2021-12-15T23:08:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xriYP",
+          "commit": {
+            "abbreviatedOid": "f8f0748"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T23:08:56Z",
+          "updatedAt": "2021-12-15T23:08:56Z",
+          "comments": [
+            {
+              "originalPosition": 506,
+              "body": "Does it make sense to refer to versions here?",
+              "createdAt": "2021-12-15T23:08:56Z",
+              "updatedAt": "2021-12-15T23:08:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xriay",
+          "commit": {
+            "abbreviatedOid": "f8f0748"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T23:09:10Z",
+          "updatedAt": "2021-12-15T23:09:10Z",
+          "comments": [
+            {
+              "originalPosition": 768,
+              "body": "Same question about version",
+              "createdAt": "2021-12-15T23:09:10Z",
+              "updatedAt": "2021-12-15T23:09:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xrigj",
+          "commit": {
+            "abbreviatedOid": "f8f0748"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-12-15T23:09:46Z",
+          "updatedAt": "2021-12-15T23:10:18Z",
+          "comments": [
+            {
+              "originalPosition": 850,
+              "body": "```suggestion\r\n# Security considerations {#security-considerations}\r\n\r\n```",
+              "createdAt": "2021-12-15T23:09:46Z",
+              "updatedAt": "2021-12-15T23:10:18Z"
+            },
+            {
+              "originalPosition": 938,
+              "body": "```suggestion\r\n: see {{security-considerations}}\r\n```",
+              "createdAt": "2021-12-15T23:09:53Z",
+              "updatedAt": "2021-12-15T23:10:18Z"
+            },
+            {
+              "originalPosition": 1213,
+              "body": "```suggestion\r\n: see {{security-considerations}}\r\n```",
+              "createdAt": "2021-12-15T23:10:06Z",
+              "updatedAt": "2021-12-15T23:10:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84xrlIV",
+          "commit": {
+            "abbreviatedOid": "87c941f"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Aligning terminology...",
+          "createdAt": "2021-12-15T23:29:01Z",
+          "updatedAt": "2021-12-15T23:32:26Z",
+          "comments": [
+            {
+              "originalPosition": 440,
+              "body": "```suggestion\r\n   uint8_t issuer_key_id;\r\n```",
+              "createdAt": "2021-12-15T23:29:02Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
+            },
+            {
+              "originalPosition": 466,
+              "body": "```suggestion\r\n- \"issuer_key_id\" is the least significant byte of the `key_id`.\r\n```",
+              "createdAt": "2021-12-15T23:29:36Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
+            },
+            {
+              "originalPosition": 506,
+              "body": "```suggestion\r\n- The TokenRequest contains a supported token_type\r\n- The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.\r\n- The TokenRequest.blinded_msg is of the correct size\r\n```",
+              "createdAt": "2021-12-15T23:30:40Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
+            },
+            {
+              "originalPosition": 705,
+              "body": "```suggestion\r\nblinded_msg, blind_inv = rsabssa_blind(Issuer Key, message)\r\n```",
+              "createdAt": "2021-12-15T23:31:09Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
+            },
+            {
+              "originalPosition": 720,
+              "body": "```suggestion\r\n   uint8_t issuer_key_id;\r\n```",
+              "createdAt": "2021-12-15T23:31:22Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
+            },
+            {
+              "originalPosition": 733,
+              "body": "```suggestion\r\n- \"issuer_key_id\" is the least significant byte of the `key_id`.\r\n```",
+              "createdAt": "2021-12-15T23:31:29Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
+            },
+            {
+              "originalPosition": 768,
+              "body": "```suggestion\r\n- The TokenRequest contains a supported token_type.\r\n- The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.\r\n- The TokenRequest.blinded_msg is of the correct size.\r\n```",
+              "createdAt": "2021-12-15T23:32:06Z",
+              "updatedAt": "2021-12-15T23:32:27Z"
             }
           ]
         }
